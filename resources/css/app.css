@@ -1,0 +1,92 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    /* === LIGHT MODE (Misty Lavender Theme) === */
+    /* Mengambil warna #bfc0d1 dari palet gambar */
+    --bg-dynamic: #bfc0d1;
+    --card-bg: #bfc0d1;
+
+    /* Aksen Utama: Royal Purple (#60519b) */
+    --accent-dynamic: #60519b;
+
+    /* Pemanis: Pink lembut agar tidak kaku */
+    --accent-sweet: #d946ef;
+
+    /* Pattern: Versi lebih gelap dari background */
+    --pattern-color: #9ca3af;
+
+    /* Teks: Menggunakan warna gelap (#1e202c) agar kontras tinggi */
+    --text-main: #1e202c;
+    --text-muted: #4b5563;
+
+    /* Border halus */
+    --border-soft: rgba(255, 255, 255, 0.5);
+
+    /* Shadow Light Mode (Disesuaikan dengan #bfc0d1) */
+    /* Bayangan gelap: Abu ungu tua | Bayangan terang: Putih */
+    --shadow-val: 9px 9px 16px #a2a3b2, -9px -9px 16px #ffffff;
+    --shadow-val-pressed: inset 6px 6px 10px #a2a3b2, inset -6px -6px 10px #ffffff;
+  }
+
+  .dark {
+    /* === DARK MODE (Deep Void Theme) === */
+    /* Mengambil warna #1e202c dari palet gambar */
+    --bg-dynamic: #1e202c;
+    --card-bg: #1e202c; /* Samakan dengan BG untuk efek Neomorphism */
+
+    /* Aksen Utama: Royal Purple */
+    --accent-dynamic: #60519b;
+
+    /* Pemanis: Ungu muda */
+    --accent-sweet: #a78bfa;
+
+    /* Pattern: Mengambil warna Dark Slate (#31323e) */
+    --pattern-color: #31323e;
+
+    /* Teks: Menggunakan warna terang (#bfc0d1) */
+    --text-main: #bfc0d1;
+    --text-muted: #9ca3af;
+
+    --border-soft: rgba(255, 255, 255, 0.08);
+
+    /* Shadow Dark Mode (Disesuaikan dengan #1e202c) */
+    /* Bayangan gelap: Hitam pekat | Bayangan terang: #31323e */
+    --shadow-val: 6px 6px 12px #15161f, -6px -6px 12px #272a39;
+    --shadow-val-pressed: inset 6px 6px 12px #15161f, inset -6px -6px 12px #272a39;
+  }
+}
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+    /* Mapping Variable Dinamis */
+    --color-rail-dark: var(--bg-dynamic);
+    --color-rail-card: var(--card-bg);
+    --color-rail-accent: var(--accent-dynamic);
+    --color-rail-sweet: var(--accent-sweet); /* Variable baru untuk pemanis */
+
+    --color-text-main: var(--text-main);
+    --color-text-muted: var(--text-muted);
+    --color-border-soft: var(--border-soft);
+
+    --shadow-neu-dark: var(--shadow-val);
+    --shadow-neu-dark-pressed: var(--shadow-val-pressed);
+
+    /* Glow Ungu */
+    --shadow-glow: 0 0 25px rgba(96, 81, 155, 0.25);
+}
+
+@utility bg-dot-pattern {
+    background-image: radial-gradient(var(--pattern-color) 1px, transparent 1px);
+}
+@utility bg-dot-lg {
+    background-size: 24px 24px;
+}
