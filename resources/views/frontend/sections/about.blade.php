@@ -208,7 +208,6 @@
 
     </div>
 
-
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
 
         <div>
@@ -224,48 +223,35 @@
             </div>
 
             <div class="relative pl-8 border-l border-rail-accent/20 space-y-10 ml-3">
+                @foreach ($tech_experiences as $exp)
+                    <div class="relative group">
+                        <span
+                            class="absolute -left-[37px] top-6 h-4 w-4 rounded-full border-2 border-rail-accent bg-rail-dark group-hover:bg-rail-accent transition-colors shadow-[0_0_10px_rgba(139,92,246,0.4)]"></span>
 
-                <div class="relative group">
-                    <span
-                        class="absolute -left-[37px] top-6 h-4 w-4 rounded-full border-2 border-rail-accent bg-rail-dark group-hover:bg-rail-accent transition-colors shadow-[0_0_10px_rgba(139,92,246,0.4)]"></span>
+                        <div
+                            class="p-5 rounded-[24px] bg-rail-card shadow-neu-dark border border-border-soft hover:border-rail-accent transition-all group-hover:-translate-y-1 duration-300">
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="font-bold text-text-main group-hover:text-rail-accent transition-colors">
+                                    {{ $exp->role }}</h4>
+                                <span
+                                    class="text-[10px] px-2 py-1 bg-rail-dark rounded text-text-muted border border-white/5">{{ $exp->period }}</span>
+                            </div>
+                            <p class="text-xs text-rail-sweet font-medium mb-2">{{ $exp->company }}</p>
+                            <p class="text-xs text-text-muted leading-relaxed mb-3">
+                                {{ $exp->description }}
+                            </p>
 
-                    <div
-                        class="p-5 rounded-[24px] bg-rail-card shadow-neu-dark border border-border-soft hover:border-rail-accent transition-all">
-                        <div class="flex justify-between items-start mb-1">
-                            <h4 class="font-bold text-text-main group-hover:text-rail-accent transition-colors">Junior
-                                Web Developer</h4>
-                            <span class="text-[10px] px-2 py-1 bg-rail-dark rounded text-text-muted">Internship</span>
-                        </div>
-                        <p class="text-xs text-rail-sweet font-medium mb-2">PT Phicos Cipta Media</p>
-                        <p class="text-xs text-text-muted leading-relaxed">
-                            My first professional step. Learned how to build web apps and work in a real dev team.
-                        </p>
-                        <div class="mt-3 flex flex-wrap gap-2">
-                            <span
-                                class="text-[10px] px-2 py-0.5 border border-border-soft rounded text-text-muted">Laravel</span>
-                            <span
-                                class="text-[10px] px-2 py-0.5 border border-border-soft rounded text-text-muted">MySQL</span>
+                            @if (!empty($exp->tech_stack))
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach ($exp->tech_stack as $tech)
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 border border-border-soft rounded text-text-muted bg-rail-dark/50">{{ trim($tech) }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
-                </div>
-
-                <div class="relative group">
-                    <span
-                        class="absolute -left-[37px] top-6 h-4 w-4 rounded-full border-2 border-rail-accent bg-rail-dark group-hover:bg-rail-accent transition-colors shadow-[0_0_10px_rgba(139,92,246,0.4)]"></span>
-
-                    <div
-                        class="p-5 rounded-[24px] bg-rail-card shadow-neu-dark border border-border-soft hover:border-rail-accent transition-all">
-                        <div class="flex justify-between items-start mb-1">
-                            <h4 class="font-bold text-text-main">Informatics Engineering</h4>
-                            <span class="text-[10px] px-2 py-1 bg-rail-dark rounded text-text-muted">Present</span>
-                        </div>
-                        <p class="text-xs text-rail-sweet font-medium mb-2">Universitas Duta Bangsa</p>
-                        <p class="text-xs text-text-muted leading-relaxed">
-                            Focusing on Software Engineering, Data Structures, and Algorithms.
-                        </p>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
 
@@ -283,73 +269,39 @@
             </div>
 
             <div class="relative pl-8 border-l border-rail-sweet/20 space-y-10 ml-3">
+                @foreach ($prof_experiences as $exp)
+                    <div class="relative group">
+                        <span
+                            class="absolute -left-[37px] top-6 h-4 w-4 rounded-full border-2 border-rail-sweet bg-rail-dark group-hover:bg-rail-sweet transition-colors shadow-[0_0_10px_rgba(236,72,153,0.4)]"></span>
 
-                <div class="relative group">
-                    <span
-                        class="absolute -left-[37px] top-6 h-4 w-4 rounded-full border-2 border-rail-sweet bg-rail-dark group-hover:bg-rail-sweet transition-colors shadow-[0_0_10px_rgba(236,72,153,0.4)]"></span>
+                        <div
+                            class="p-5 rounded-[24px] bg-rail-card shadow-neu-dark border border-border-soft hover:border-rail-sweet transition-all group-hover:-translate-y-1 duration-300">
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="font-bold text-text-main group-hover:text-rail-sweet transition-colors">
+                                    {{ $exp->role }}</h4>
+                                <span
+                                    class="text-[10px] px-2 py-1 bg-rail-dark rounded text-text-muted border border-white/5">{{ $exp->period }}</span>
+                            </div>
+                            <p class="text-xs text-rail-sweet font-medium mb-2">{{ $exp->company }}</p>
+                            <p class="text-xs text-text-muted leading-relaxed mb-3">
+                                {{ $exp->description }}
+                            </p>
 
-                    <div
-                        class="p-5 rounded-[24px] bg-rail-card shadow-neu-dark border border-border-soft hover:border-rail-sweet transition-all">
-                        <div class="flex justify-between items-start mb-1">
-                            <h4 class="font-bold text-text-main group-hover:text-rail-sweet transition-colors">
-                                Administrative Staff</h4>
-                            <span class="text-[10px] px-2 py-1 bg-rail-dark rounded text-text-muted">Jun - Aug
-                                2024</span>
-                        </div>
-                        <p class="text-xs text-rail-sweet font-medium mb-2">PT Surya Warna Putra</p>
-                        <p class="text-xs text-text-muted leading-relaxed">
-                            Responsible for data entry, archiving documents, QC, and warehouse management.
-                        </p>
-                        <div class="mt-3 flex flex-wrap gap-2">
-                            <span class="text-[10px] px-2 py-0.5 border border-border-soft rounded text-text-muted">Ms.
-                                Office</span>
-                            <span
-                                class="text-[10px] px-2 py-0.5 border border-border-soft rounded text-text-muted">Teamwork</span>
+                            @if (!empty($exp->tech_stack))
+                                <div class="mt-3 flex flex-wrap gap-2">
+                                    @foreach ($exp->tech_stack as $tech)
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 border border-border-soft rounded text-text-muted bg-rail-dark/50">{{ trim($tech) }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
-                </div>
-
-                <div class="relative group">
-                    <span
-                        class="absolute -left-[37px] top-6 h-4 w-4 rounded-full border-2 border-rail-sweet bg-rail-dark group-hover:bg-rail-sweet transition-colors shadow-[0_0_10px_rgba(236,72,153,0.4)]"></span>
-
-                    <div
-                        class="p-5 rounded-[24px] bg-rail-card shadow-neu-dark border border-border-soft hover:border-rail-sweet transition-all">
-                        <div class="flex justify-between items-start mb-1">
-                            <h4 class="font-bold text-text-main group-hover:text-rail-sweet transition-colors">
-                                Part-time Barista</h4>
-                            <span class="text-[10px] px-2 py-1 bg-rail-dark rounded text-text-muted">Holiday</span>
-                        </div>
-                        <p class="text-xs text-rail-sweet font-medium mb-2">My Aksa Coffee</p>
-                        <p class="text-xs text-text-muted leading-relaxed">
-                            Serving customers and managing orders taught me patience and communication skills.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="relative group">
-                    <span
-                        class="absolute -left-[37px] top-6 h-4 w-4 rounded-full border-2 border-rail-sweet bg-rail-dark group-hover:bg-rail-sweet transition-colors shadow-[0_0_10px_rgba(236,72,153,0.4)]"></span>
-
-                    <div
-                        class="p-5 rounded-[24px] bg-rail-card shadow-neu-dark border border-border-soft hover:border-rail-sweet transition-all">
-                        <div class="flex justify-between items-start mb-1">
-                            <h4 class="font-bold text-text-main group-hover:text-rail-sweet transition-colors">
-                                Part-time Mobile Barista</h4>
-                            <span class="text-[10px] px-2 py-1 bg-rail-dark rounded text-text-muted">Holiday</span>
-                        </div>
-                        <p class="text-xs text-rail-sweet font-medium mb-2">Heika Kopi</p>
-                        <p class="text-xs text-text-muted leading-relaxed">
-                            Serving customers and managing orders taught me patience and communication skills.
-                        </p>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
 
     </div>
-
     <div class="md:col-span-12 mt-6">
 
         <h4
@@ -454,17 +406,28 @@
                                 {{ $cert->title }}
                             </h5>
 
-                            <p class="text-xs text-text-muted line-clamp-1">
-                                {{ $cert->description ?? 'No description' }}
+                            <p class="text-xs text-text-muted line-clamp-2" title="{{ $cert->description }}">
+                                {{ $cert->description ?? 'No description available' }}
                             </p>
 
-                            <div class="pt-3 flex items-center justify-between border-t border-white/5 mt-3">
-                                <span
-                                    class="text-[10px] font-medium px-2 py-1 rounded-md bg-rail-accent/10 text-rail-accent border border-rail-accent/20 truncate max-w-[120px]">
-                                    {{ $cert->tags ?? 'Certificate' }}
-                                </span>
+                            <div class="pt-3 flex items-start justify-between border-t border-white/5 mt-3 gap-2">
 
-                                <span class="text-[10px] text-text-muted">{{ $cert->issued_year }}</span>
+                                <div class="flex flex-wrap gap-1">
+                                    @if ($cert->tags)
+                                        @foreach (explode(',', $cert->tags) as $tag)
+                                            <span
+                                                class="text-[10px] font-medium px-2 py-1 rounded-md bg-rail-accent/10 text-rail-accent border border-rail-accent/20">
+                                                {{ trim($tag) }}
+                                            </span>
+                                        @endforeach
+                                    @else
+                                        <span class="text-[10px] text-text-muted">Certificate</span>
+                                    @endif
+                                </div>
+
+                                <span class="text-[10px] text-text-muted whitespace-nowrap mt-1">
+                                    {{ $cert->issued_year }}
+                                </span>
                             </div>
                         </div>
 

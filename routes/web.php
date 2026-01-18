@@ -2,10 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CertificateController;
-use App\Http\Controllers\Admin\ProjectController; // Import Controller Project
+use App\Http\Controllers\Admin\ExperienceController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\AuthController;
 use App\Models\Certificate;
-use App\Models\Project; // <--- INI WAJIB DITAMBAHKAN AGAR TIDAK ERROR
+use App\Models\Experience;
+use App\Models\Project; 
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +26,32 @@ Route::get('/', function () {
 
     // Ambil data Project (Terbaru)
     $projects = Project::latest()->get();
+    $tech_experiences = Experience::where('type', 'tech')->latest()->get();
+    $prof_experiences = Experience::where('type', 'professional')->latest()->get();
 
-    return view('frontend.home', compact('certificates', 'projects'));
+
+    return view('frontend.home', compact('certificates', 'projects','tech_experiences','prof_experiences'));
 })->name('home');
+
+
+//api token monkeytype
+//    Njk2Yzk2OGM0MjhiNjk2MTlhY2I4NmY4LnMxckVaUEhWX2tpRzJBeWF5bm43dzQzUVNwdTlpOXdZ
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Debug ENV (sementara)
+|--------------------------------------------------------------------------
+*/
+Route::get('/debug-env', function () {
+    return response()->json([
+        'monkeytype_token' => env('MONKEYTYPE_TOKEN'),
+    ]);
+});
+
+
+
 
 
 // --- 2. AUTHENTICATION (MANUAL) ---
@@ -55,5 +82,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // CRUD Project
     Route::resource('projects', ProjectController::class);
-
+    // CRUD Experience
+    Route::resource('experiences', ExperienceController::class);
 });
+
+
+
