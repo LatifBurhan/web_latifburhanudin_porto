@@ -53,7 +53,7 @@ else document.documentElement.classList.remove('dark');">
             const audio = this.$refs.bgMusic;
             // Volume diset pelan (20%) biar enak didengar
             audio.volume = 0.2;
-
+    
             if (this.musicPlaying) {
                 audio.play();
             } else {
