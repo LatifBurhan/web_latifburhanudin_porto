@@ -31,39 +31,51 @@
         </div>
 
         <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-10">
-            <button @click="activeTab = 'works'"
-                class="px-6 py-3 rounded-xl bg-rail-accent text-rail-dark font-bold shadow-[0_0_20px_rgba(102,252,241,0.3)] hover:shadow-[0_0_30px_rgba(102,252,241,0.5)] transition-all transform hover:-translate-y-1">
+
+            <button @click="switchTab('works')"
+                class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-rail-accent to-rail-sweet text-white font-bold shadow-lg hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] transition-all transform hover:-translate-y-1 hover:scale-105 active:scale-95">
                 View Projects
             </button>
-            <button @click="activeTab = 'connect'"
-                class="px-6 py-3 rounded-xl bg-rail-card text-text-muted shadow-neu-dark border border-border-soft hover:text-rail-accent transition-all transform hover:-translate-y-1 active:shadow-neu-dark-pressed">
+
+            <button @click="switchTab('connect')"
+                class="px-8 py-3.5 rounded-xl bg-rail-card text-text-muted font-medium shadow-neu-dark border border-border-soft hover:text-white hover:border-rail-accent/50 transition-all transform hover:-translate-y-1 active:scale-95">
                 Contact Me
             </button>
         </div>
 
-        <div class="space-y-3">
-            <p class="text-xs font-mono text-gray-500 uppercase tracking-widest">Core Tech Stack</p>
+        <div class="space-y-4">
+            <p class="text-xs font-mono text-gray-500 uppercase tracking-[0.2em]">Core Tech Stack</p>
+
             <div class="flex flex-wrap justify-center md:justify-start gap-3">
+
                 <div
-                    class="px-4 py-2 rounded-lg bg-rail-card border border-white/5 shadow-neu-dark text-xs text-gray-400 hover:text-red-500 transition-colors cursor-default">
-                    Laravel
+                    class="group relative px-5 py-2 rounded-xl bg-rail-card border border-red-500/20 shadow-md hover:shadow-[0_0_15px_rgba(239,68,68,0.5)] hover:bg-red-600 hover:border-red-600 transition-all duration-300 hover:-translate-y-1 cursor-default">
+                    <span class="text-xs font-bold text-red-500 group-hover:text-white transition-colors">Laravel</span>
                 </div>
+
                 <div
-                    class="px-4 py-2 rounded-lg bg-rail-card border border-white/5 shadow-neu-dark text-xs text-gray-400 hover:text-cyan-400 transition-colors cursor-default">
-                    Tailwind CSS
+                    class="group relative px-5 py-2 rounded-xl bg-rail-card border border-cyan-400/20 shadow-md hover:shadow-[0_0_15px_rgba(34,211,238,0.5)] hover:bg-cyan-500 hover:border-cyan-500 transition-all duration-300 hover:-translate-y-1 cursor-default">
+                    <span class="text-xs font-bold text-cyan-400 group-hover:text-white transition-colors">Tailwind
+                        CSS</span>
                 </div>
+
                 <div
-                    class="px-4 py-2 rounded-lg bg-rail-card border border-white/5 shadow-neu-dark text-xs text-gray-400 hover:text-blue-400 transition-colors cursor-default">
-                    React
+                    class="group relative px-5 py-2 rounded-xl bg-rail-card border border-blue-500/20 shadow-md hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:bg-blue-600 hover:border-blue-600 transition-all duration-300 hover:-translate-y-1 cursor-default">
+                    <span class="text-xs font-bold text-blue-500 group-hover:text-white transition-colors">React</span>
                 </div>
+
                 <div
-                    class="px-4 py-2 rounded-lg bg-rail-card border border-white/5 shadow-neu-dark text-xs text-gray-400 hover:text-purple-400 transition-colors cursor-default">
-                    Figma
+                    class="group relative px-5 py-2 rounded-xl bg-rail-card border border-purple-500/20 shadow-md hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] hover:bg-purple-600 hover:border-purple-600 transition-all duration-300 hover:-translate-y-1 cursor-default">
+                    <span
+                        class="text-xs font-bold text-purple-500 group-hover:text-white transition-colors">Figma</span>
                 </div>
+
                 <div
-                    class="px-4 py-2 rounded-lg bg-rail-card border border-white/5 shadow-neu-dark text-xs text-gray-400 hover:text-orange-400 transition-colors cursor-default">
-                    MySQL
+                    class="group relative px-5 py-2 rounded-xl bg-rail-card border border-orange-500/20 shadow-md hover:shadow-[0_0_15px_rgba(249,115,22,0.5)] hover:bg-orange-500 hover:border-orange-500 transition-all duration-300 hover:-translate-y-1 cursor-default">
+                    <span
+                        class="text-xs font-bold text-orange-500 group-hover:text-white transition-colors">MySQL</span>
                 </div>
+
             </div>
         </div>
     </div>

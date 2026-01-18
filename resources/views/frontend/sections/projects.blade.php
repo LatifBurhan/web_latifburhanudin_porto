@@ -1,6 +1,8 @@
 <div x-data="{
     category: 'website',
     selectedProject: null,
+
+    // DATA PROJECT (Sesuaikan dengan data asli Anda)
     projects: [
         {
             id: 1,
@@ -37,20 +39,11 @@
             desc: 'Dashboard admin untuk mengelola stok barang, pesanan masuk, dan laporan keuangan bulanan UMKM.',
             tech: ['React JS', 'Tailwind', 'Node JS'],
             links: { demo: '#', github: '#', figma: null }
-        },
-        {
-            id: 5,
-            title: 'Travel Landing Page',
-            category: 'uiux',
-            image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1000&auto=format&fit=crop',
-            desc: 'Konsep landing page untuk agensi travel dengan fokus pada visual storytelling dan kemudahan booking.',
-            tech: ['Figma', 'Wireframing'],
-            links: { demo: null, github: null, figma: '#' }
         }
-    ]
-}" class="w-full max-w-6xl mx-auto px-4 pb-32">
+    ],
 
-    <div class="text-center mb-12">
+
+}" class="w-full max-w-6xl mx-auto px-6 md:px-8 pb-32"> <div class="text-center mb-12">
         <h2 class="text-3xl md:text-5xl font-bold text-text-main mb-6">
             Selected <span class="text-transparent bg-clip-text bg-gradient-to-r from-rail-accent to-rail-sweet">Projects.</span>
         </h2>
@@ -74,11 +67,11 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
         <template x-for="item in projects.filter(p => p.category === category)" :key="item.id">
 
             <div @click="selectedProject = item"
-                 class="group relative rounded-[30px] bg-rail-card border border-border-soft shadow-neu-dark overflow-hidden cursor-pointer hover:-translate-y-2 transition-transform duration-500">
+                 class="group relative rounded-[30px] bg-rail-card border border-border-soft shadow-neu-dark overflow-hidden cursor-pointer hover:-translate-y-2 hover:z-30 hover:shadow-xl transition-all duration-500">
 
                 <div class="h-48 overflow-hidden relative">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity"></div>
@@ -104,6 +97,8 @@
             </div>
         </template>
     </div>
+
+
 
     <div x-show="selectedProject"
          style="display: none;"
@@ -133,9 +128,7 @@
 
             <div class="w-full md:w-1/2 p-8 md:p-10 flex flex-col overflow-y-auto">
                 <span x-text="selectedProject?.category" class="inline-block w-fit px-3 py-1 rounded-full bg-rail-dark text-rail-sweet text-xs font-bold uppercase tracking-wider mb-4 border border-border-soft"></span>
-
                 <h2 x-text="selectedProject?.title" class="text-3xl font-bold text-text-main mb-4 leading-tight"></h2>
-
                 <p x-text="selectedProject?.desc" class="text-text-muted leading-relaxed mb-6"></p>
 
                 <div class="mb-8">
@@ -156,7 +149,6 @@
                             <span x-text="selectedProject?.category === 'website' ? 'Live Demo' : 'View Design'"></span>
                         </a>
                     </template>
-
                     <template x-if="selectedProject?.links?.github">
                         <a :href="selectedProject?.links?.github" target="_blank"
                            class="flex-1 py-3 rounded-xl bg-rail-dark border border-border-soft text-text-muted font-bold text-center hover:text-text-main hover:border-rail-accent transition-all flex items-center justify-center gap-2">
@@ -165,7 +157,6 @@
                         </a>
                     </template>
                 </div>
-
             </div>
         </div>
     </div>
