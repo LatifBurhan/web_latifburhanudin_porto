@@ -150,59 +150,95 @@
         <div class="lg:col-span-5 grid grid-cols-2 gap-4">
 
             <div
-                class="col-span-2 sm:col-span-1 group relative rounded-[28px] overflow-hidden border border-cyan-500/20 hover:border-cyan-400 transition-all duration-300 hover:-translate-y-1">
-                <div class="absolute inset-0 bg-gradient-to-b from-cyan-900/20 to-rail-card opacity-50"></div>
-                <div class="relative p-6 flex flex-col items-center text-center justify-center h-full">
-                    <div
-                        class="text-5xl font-black text-cyan-400 mb-1 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">
-                        1<span class="text-2xl align-top text-cyan-600">+</span>
-                    </div>
-                    <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-1">Year Exp</h5>
-                    <p class="text-[10px] text-cyan-200/70">Web Development</p>
-                </div>
-            </div>
+                class="col-span-2 sm:col-span-1 group relative rounded-[28px] overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-sm dark:shadow-none
+        bg-white/40 dark:bg-rail-card/40 backdrop-blur-md
+        border border-cyan-500/30 dark:border-cyan-500/20 hover:border-cyan-500 dark:hover:border-cyan-400">
 
-            <div
-                class="col-span-2 sm:col-span-1 group relative rounded-[28px] overflow-hidden border border-pink-500/20 hover:border-pink-400 transition-all duration-300 hover:-translate-y-1">
-                <div class="absolute inset-0 bg-gradient-to-b from-pink-900/20 to-rail-card opacity-50"></div>
-                <div class="relative p-6 flex flex-col items-center text-center justify-center h-full">
-                    <div
-                        class="text-5xl font-black text-pink-400 mb-1 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(244,114,182,0.5)]">
-                        2<span class="text-2xl align-top text-pink-600">+</span>
-                    </div>
-                    <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-1">Years Exp</h5>
-                    <p class="text-[10px] text-pink-200/70">UI/UX & Graphics</p>
-                </div>
-            </div>
-
-            <div
-                class="col-span-2 group relative rounded-[28px] overflow-hidden border border-emerald-500/20 hover:border-emerald-400 transition-all duration-300">
                 <div
-                    class="absolute inset-0 bg-gradient-to-r from-emerald-900/20 via-rail-card to-rail-card opacity-50">
+                    class="absolute inset-0 bg-gradient-to-b from-cyan-200/30 to-transparent dark:from-cyan-900/30 dark:to-rail-card opacity-70 dark:opacity-50">
                 </div>
-                <div class="relative p-5 flex items-center justify-between gap-4">
-                    <div class="flex items-center gap-4">
+
+                <div class="relative p-6 flex flex-col items-center text-center justify-center h-full">
+                    <div
+                        class="text-5xl font-black text-cyan-700 dark:text-cyan-400 mb-1 group-hover:scale-110 transition-transform duration-300 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">
+                        1<span class="text-2xl align-top text-cyan-800 dark:text-cyan-600">+</span>
+                    </div>
+
+                    <h5 class="text-xs font-bold text-gray-800 dark:text-white uppercase tracking-wider mb-1">Year Exp
+                    </h5>
+
+                    <p class="text-[10px] text-cyan-800/80 dark:text-cyan-200/70 font-bold">Web Development</p>
+                </div>
+            </div>
+
+            <div
+                class="col-span-2 sm:col-span-1 group relative rounded-[28px] overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-sm dark:shadow-none
+        bg-white/40 dark:bg-rail-card/40 backdrop-blur-md
+        border border-pink-500/30 dark:border-pink-500/20 hover:border-pink-500 dark:hover:border-pink-400">
+
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-pink-200/30 to-transparent dark:from-pink-900/30 dark:to-rail-card opacity-70 dark:opacity-50">
+                </div>
+
+                <div class="relative p-6 flex flex-col items-center text-center justify-center h-full">
+                    <div
+                        class="text-5xl font-black text-pink-700 dark:text-pink-400 mb-1 group-hover:scale-110 transition-transform duration-300 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(244,114,182,0.5)]">
+                        2<span class="text-2xl align-top text-pink-800 dark:text-pink-600">+</span>
+                    </div>
+
+                    <h5 class="text-xs font-bold text-gray-800 dark:text-white uppercase tracking-wider mb-1">Years Exp
+                    </h5>
+
+                    <p class="text-[10px] text-pink-800/80 dark:text-pink-200/70 font-bold">UI/UX & Graphics</p>
+                </div>
+            </div>
+
+            <a href="{{ route('cv.download') }}" download
+                class="col-span-2 group relative rounded-[28px] overflow-hidden transition-all duration-300
+          hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/30 cursor-pointer
+          bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
+
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-white/10 blur-[50px] rounded-full translate-x-10 -translate-y-10 pointer-events-none">
+                </div>
+                <div
+                    class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 blur-[40px] rounded-full -translate-x-5 translate-y-5 pointer-events-none">
+                </div>
+
+                <div class="relative p-6 sm:p-8 flex items-center justify-between gap-4 h-full">
+
+                    <div class="flex items-center gap-5">
                         <div
-                            class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="w-14 h-14 rounded-2xl flex items-center justify-center
+                        bg-white/20 backdrop-blur-md border border-white/20 shadow-inner
+                        text-white group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
                             </svg>
                         </div>
-                        <div>
-                            <p class="text-[10px] text-emerald-200/70 uppercase tracking-widest font-bold">Status</p>
-                            <p class="text-sm font-bold text-white">Always Learning & Growing</p>
+
+                        <div class="text-left">
+                            <p class="text-[10px] text-white/80 uppercase tracking-widest font-bold mb-1">Hire Me</p>
+                            <h3 class="text-2xl font-black text-white leading-none">
+                                Download CV
+                            </h3>
                         </div>
                     </div>
-                    <div class="pr-2">
-                        <svg class="w-5 h-5 text-emerald-500 group-hover:translate-x-1 transition-transform"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
+
+                    <div
+                        class="hidden sm:flex h-12 w-12 rounded-full bg-white text-purple-600 items-center justify-center
+                    group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300">
+                        <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                         </svg>
                     </div>
+
                 </div>
-            </div>
+            </a>
 
         </div>
 
