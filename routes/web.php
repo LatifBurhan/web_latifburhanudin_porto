@@ -12,7 +12,7 @@ use App\Models\ResumeDownload;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Controllers\ContactController;
 
 
 
@@ -150,3 +150,16 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::post('/resumes/{id}/activate', [App\Http\Controllers\Admin\ResumeController::class, 'activate'])->name('resumes.activate');
     Route::get('/resumes/{id}/logs', [App\Http\Controllers\Admin\ResumeController::class, 'logs'])->name('resumes.logs');
 });
+
+
+// Pakai ::class
+Route::post('/contact/send', [ContactController::class, 'store'])->name('contact.send');
+
+Route::get('/debug-env', function () {
+    dd(
+        env('a8cdEEUvtrXTLeNJVU53'),
+        config('services.fonnte.token')
+    );
+});
+
+

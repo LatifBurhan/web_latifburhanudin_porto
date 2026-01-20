@@ -35,7 +35,7 @@
                         </div>
                         <div>
                             <p class="text-xs text-text-muted">Email Me</p>
-                            <p class="text-sm font-bold text-text-main">latif@example.com</p>
+                            <p class="text-sm font-bold text-text-main">latifburhanuddin02@gmail.com</p>
                         </div>
                     </a>
 
@@ -60,7 +60,7 @@
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-                <a href="https://linkedin.com/in/latifburhanudin" target="_blank"
+                <a href="https://www.linkedin.com/in/latif-burhanuddin-29002230a/" target="_blank"
                     class="p-4 rounded-[24px] bg-[#0077b5]/10 border border-[#0077b5]/20 hover:bg-[#0077b5]/20 transition-all flex flex-col items-center justify-center gap-2 group">
                     <svg class="w-6 h-6 text-[#0077b5] group-hover:scale-110 transition-transform" fill="currentColor"
                         viewBox="0 0 24 24">
@@ -80,15 +80,17 @@
                     <span class="text-xs font-bold text-text-main">GitHub</span>
                 </a>
 
-                <a href="#" target="_blank"
-       class="p-4 rounded-[24px] bg-pink-500/10 border border-pink-500/20 hover:bg-pink-500/20 transition-all flex flex-col items-center justify-center gap-2 group">
-        <svg class="w-6 h-6 text-pink-500 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z" />
-        </svg>
-        <span class="text-xs font-bold text-text-main">Instagram</span>
-    </a>
+                <a href="https://www.instagram.com/latifbrhn_/" target="_blank"
+                    class="p-4 rounded-[24px] bg-pink-500/10 border border-pink-500/20 hover:bg-pink-500/20 transition-all flex flex-col items-center justify-center gap-2 group">
+                    <svg class="w-6 h-6 text-pink-500 group-hover:scale-110 transition-transform" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z" />
+                    </svg>
+                    <span class="text-xs font-bold text-text-main">Instagram</span>
+                </a>
 
-                <a href="https://pinterest.com/username" target="_blank"
+                <a href="https://id.pinterest.com/kotepganzz2006/_pins/" target="_blank"
                     class="p-4 rounded-[24px] bg-red-600/10 border border-red-600/20 hover:bg-red-600/20 transition-all flex flex-col items-center justify-center gap-2 group">
                     <svg class="w-6 h-6 text-red-600 group-hover:scale-110 transition-transform" fill="currentColor"
                         viewBox="0 0 24 24">
@@ -100,51 +102,51 @@
             </div>
         </div>
 
-        <div class="md:col-span-7 p-8 rounded-[30px] bg-rail-card border border-border-soft shadow-neu-dark">
+        <div
+            class="md:col-span-7 p-8 rounded-[30px] bg-rail-card border border-border-soft shadow-neu-dark backdrop-blur-md">
             <h3 class="text-lg font-bold text-text-main mb-6">Send a Message</h3>
 
-            <form action="#" method="POST" class="space-y-6">
+            <form action="{{ route('contact.send') }}" method="POST" class="space-y-6">
+                @csrf
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                     <div class="relative group">
-                        <input type="text" id="name" required placeholder=" "
+                        <input type="text" id="name" name="name" required placeholder=" "
                             class="peer w-full bg-rail-dark border border-border-soft rounded-2xl px-5 pt-6 pb-2 text-text-main focus:outline-none focus:border-rail-accent focus:ring-1 focus:ring-rail-accent transition-all placeholder-transparent">
 
                         <label for="name"
                             class="absolute left-5 transition-all duration-200 ease-out
-                              /* POSISI DEFAULT (TERISI/FOKUS): Di Atas & Kecil */
-                              top-1 text-xs text-text-muted
-
-                              /* POSISI KOSONG (Placeholder Shown): Turun ke Tengah & Besar */
-                              peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-text-muted
-
-                              /* POSISI FOKUS: Tetap di Atas & Warna Aksen */
-                              peer-focus:top-1 peer-focus:text-xs peer-focus:text-rail-accent">
+                           top-1 text-xs text-text-muted
+                           peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-text-muted
+                           peer-focus:top-1 peer-focus:text-xs peer-focus:text-rail-accent">
                             Your Name
                         </label>
                     </div>
 
                     <div class="relative group">
-                        <input type="email" id="email" required placeholder=" "
+                        <input type="email" id="email" name="email" required placeholder=" "
                             class="peer w-full bg-rail-dark border border-border-soft rounded-2xl px-5 pt-6 pb-2 text-text-main focus:outline-none focus:border-rail-accent focus:ring-1 focus:ring-rail-accent transition-all placeholder-transparent">
+
                         <label for="email"
                             class="absolute left-5 transition-all duration-200 ease-out
-                              top-1 text-xs text-text-muted
-                              peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-text-muted
-                              peer-focus:top-1 peer-focus:text-xs peer-focus:text-rail-accent">
+                           top-1 text-xs text-text-muted
+                           peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-text-muted
+                           peer-focus:top-1 peer-focus:text-xs peer-focus:text-rail-accent">
                             Email Address
                         </label>
                     </div>
                 </div>
 
                 <div class="relative group">
-                    <textarea id="message" rows="5" required placeholder=" "
+                    <textarea id="message" name="message" rows="5" required placeholder=" "
                         class="peer w-full bg-rail-dark border border-border-soft rounded-2xl px-5 pt-6 pb-2 text-text-main focus:outline-none focus:border-rail-accent focus:ring-1 focus:ring-rail-accent transition-all placeholder-transparent resize-none"></textarea>
+
                     <label for="message"
                         class="absolute left-5 transition-all duration-200 ease-out
-                          top-1 text-xs text-text-muted
-                          peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-text-muted
-                          peer-focus:top-1 peer-focus:text-xs peer-focus:text-rail-accent">
+                       top-1 text-xs text-text-muted
+                       peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-text-muted
+                       peer-focus:top-1 peer-focus:text-xs peer-focus:text-rail-accent">
                         Tell me about your project...
                     </label>
                 </div>
@@ -157,7 +159,15 @@
                             d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                     </svg>
                 </button>
+
             </form>
+
+            @if (session('success'))
+                <div
+                    class="mt-6 p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-500 text-center font-bold text-sm animate-pulse">
+                    {{ session('success') }}
+                </div>
+            @endif
         </div>
 
     </div>
