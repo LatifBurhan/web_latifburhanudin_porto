@@ -7,32 +7,31 @@ use App\Models\Project;
 use App\Models\Certificate;
 use App\Models\Experience;
 use App\Models\ResumeDownload;
+use App\Models\Skill; // <--- PASTIKAN ADA INI DI ATAS
 
 class HomeController extends Controller
 {
-    /**
-     * Show the main portfolio page.
-     */
     public function index()
     {
-        // 1. DATA LIST (Untuk ditampilkan looping)
-        $certificates = Certificate::orderBy('is_pinned', 'desc')
-                                   ->orderBy('issued_year', 'desc')
-                                   ->get();
-
+        // 1. DATA LAINNYA
+        $certificates = Certificate::orderBy('is_pinned', 'desc')->orderBy('issued_year', 'desc')->get();
         $projects = Project::latest()->get();
-
         $tech_experiences = Experience::where('type', 'tech')->latest()->get();
-
         $prof_experiences = Experience::where('type', 'professional')->latest()->get();
 
-        // 2. DATA STATISTIK (Untuk Counter Dashboard Frontend)
+        // 2. DATA STATISTIK
         $totalProjects = Project::count();
         $totalCertificates = Certificate::count();
         $totalExperiences = Experience::count();
         $totalDownloads = ResumeDownload::count();
 
-        // 3. KIRIM KE VIEW
+        // ==========================================
+        // BARIS PENTING YANG HILANG DI KODINGAN ABANG:
+        // ==========================================
+        $skills = Skill::all();
+        // ==========================================
+
+        // 3. RETURN VIEW
         return view('frontend.home', compact(
             'certificates',
             'projects',
@@ -41,7 +40,8 @@ class HomeController extends Controller
             'totalProjects',
             'totalCertificates',
             'totalExperiences',
-            'totalDownloads'
+            'totalDownloads',
+            'skills' // <--- Variable ini butuh baris '$skills = ...' di atas tadi
         ));
     }
 }

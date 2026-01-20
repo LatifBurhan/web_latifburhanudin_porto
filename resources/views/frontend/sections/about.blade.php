@@ -340,55 +340,42 @@
     </div>
     <div class="md:col-span-12 mt-6">
 
-        <h4
-            class="text-sm font-bold text-text-muted uppercase tracking-[0.2em] mb-8 text-center flex items-center justify-center gap-4">
-            <span class="w-8 h-[1px] bg-border-soft"></span>
-            Technical & Creative Arsenal
-            <span class="w-8 h-[1px] bg-border-soft"></span>
-        </h4>
+        <div class="space-y-8 max-w-5xl mx-auto px-4">
+            <h4
+                class="text-sm font-bold text-text-muted uppercase tracking-[0.2em] text-center flex items-center justify-center gap-4">
+                <span class="w-12 h-[1px] bg-border-soft"></span>
+                Technical & Creative Arsenal
+                <span class="w-12 h-[1px] bg-border-soft"></span>
+            </h4>
 
-        <div class="flex flex-wrap justify-center gap-4">
+            <div class="text-center">
+                <p class="text-sm font-mono text-gray-500 uppercase tracking-[0.2em] mb-6">Core Tech Stack</p>
 
-            <div
-                class="group relative px-6 py-3 rounded-2xl bg-rail-card border border-rail-accent/20 shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] hover:bg-rail-accent hover:border-rail-accent transition-all duration-300 hover:-translate-y-1 cursor-default">
-                <span
-                    class="text-sm font-bold text-rail-accent group-hover:text-white transition-colors">Laravel</span>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+
+                    @foreach ($skills as $skill)
+                        <div x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false"
+                            class="group relative px-8 py-3 md:px-10 md:py-4 rounded-2xl bg-rail-card border-2 shadow-lg transition-all duration-300 hover:-translate-y-2 cursor-default"
+                            {{--
+                        LOGIKA WARNA (Updated):
+                        Border jadi border-2 (lebih tebal) agar warna lebih terekspos
+                     --}}
+                            :style="hover
+                                ?
+                                `background-color: {{ $skill->color }}; border-color: {{ $skill->color }}; box-shadow: 0 10px 30px -10px {{ $skill->color }}80; transform: translateY(-5px);` :
+                                `border-color: {{ $skill->color }}40;`">
+                            {{-- Transparansi dinaikkan dikit ke 40 biar lebih kelihatan --}}
+
+                            <span
+                                class="text-base md:text-lg font-bold transition-colors duration-300 block tracking-wide"
+                                :style="hover ? 'color: #ffffff;' : 'color: {{ $skill->color }};'">
+                                {{ $skill->name }}
+                            </span>
+                        </div>
+                    @endforeach
+
+                </div>
             </div>
-
-            <div
-                class="group relative px-6 py-3 rounded-2xl bg-rail-card border border-rail-accent/20 shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] hover:bg-rail-accent hover:border-rail-accent transition-all duration-300 hover:-translate-y-1 cursor-default">
-                <span class="text-sm font-bold text-rail-accent group-hover:text-white transition-colors">React
-                    JS</span>
-            </div>
-
-            <div
-                class="group relative px-6 py-3 rounded-2xl bg-rail-card border border-rail-accent/20 shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] hover:bg-rail-accent hover:border-rail-accent transition-all duration-300 hover:-translate-y-1 cursor-default">
-                <span
-                    class="text-sm font-bold text-rail-accent group-hover:text-white transition-colors">Tailwind</span>
-            </div>
-
-            <div
-                class="group relative px-6 py-3 rounded-2xl bg-rail-card border border-rail-accent/20 shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] hover:bg-rail-accent hover:border-rail-accent transition-all duration-300 hover:-translate-y-1 cursor-default">
-                <span class="text-sm font-bold text-rail-accent group-hover:text-white transition-colors">MySQL</span>
-            </div>
-
-
-            <div
-                class="group relative px-6 py-3 rounded-2xl bg-rail-card border border-rail-sweet/20 shadow-lg hover:shadow-[0_0_20px_rgba(236,72,153,0.5)] hover:bg-rail-sweet hover:border-rail-sweet transition-all duration-300 hover:-translate-y-1 cursor-default">
-                <span class="text-sm font-bold text-rail-sweet group-hover:text-white transition-colors">Figma</span>
-            </div>
-
-            <div
-                class="group relative px-6 py-3 rounded-2xl bg-rail-card border border-rail-sweet/20 shadow-lg hover:shadow-[0_0_20px_rgba(236,72,153,0.5)] hover:bg-rail-sweet hover:border-rail-sweet transition-all duration-300 hover:-translate-y-1 cursor-default">
-                <span class="text-sm font-bold text-rail-sweet group-hover:text-white transition-colors">Canva</span>
-            </div>
-
-            <div
-                class="group relative px-6 py-3 rounded-2xl bg-rail-card border border-rail-sweet/20 shadow-lg hover:shadow-[0_0_20px_rgba(236,72,153,0.5)] hover:bg-rail-sweet hover:border-rail-sweet transition-all duration-300 hover:-translate-y-1 cursor-default">
-                <span class="text-sm font-bold text-rail-sweet group-hover:text-white transition-colors">UI/UX
-                    Design</span>
-            </div>
-
         </div>
         <div class="md:col-span-12 mt-12">
             <h4

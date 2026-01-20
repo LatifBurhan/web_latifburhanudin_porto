@@ -2,7 +2,9 @@
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Models\Certificate;
 use App\Models\Experience;
@@ -12,7 +14,7 @@ use App\Models\ResumeDownload;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\ContactController;
+
 
 
 
@@ -101,6 +103,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('projects', ProjectController::class);
     // CRUD Experience
     Route::resource('experiences', ExperienceController::class);
+    //CRUD Skill
+    Route::resource('skills', SkillController::class);
+
 
     Route::get('/dashboard', function () {
         // Ambil Data Statistik Real-time

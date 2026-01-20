@@ -104,6 +104,15 @@
                     </svg>
                     Resumes
                 </a>
+                <a href="{{ route('admin.skills.index') }}"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 {{ request()->routeIs('admin.skiils.*') ? 'bg-rail-accent text-white shadow-lg shadow-purple-900/20' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+                    <svg class="w-5 h-5 {{ request()->routeIs('admin.skills.*') ? 'text-white' : 'text-gray-500 group-hover:text-purple-400' }}"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                    Skills
+                </a>
 
             </nav>
 
