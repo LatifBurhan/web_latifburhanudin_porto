@@ -37,24 +37,35 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('api')->group(function () {
 
     Route::get('/monkeytype-stats', function () {
-        $token = env('API_MONKEYTYPE');
+        // AMBIL DARI CONFIG DULU, BARU ENV SEBAGAI CADANGAN
+        // Pastikan di hosting kamu Environment Variable 'API_MONKEYTYPE' sudah diisi!
+        $token = config('services.monkeytype.key', env('API_MONKEYTYPE'));
 
-        if (!$token) {
-            return response()->json(['error' => 'API Key belum disetting'], 500);
+        if (empty($token)) {
+            // Debugging: Cek apakah token terbaca null
+            return response()->json(['error' => 'API Key Server configuration missing (Token is null)'], 500);
         }
 
         try {
-            // Ambil Data
-            $pbResponse = Http::withHeaders(['Authorization' => 'ApeKey ' . $token])
-                ->timeout(3)
+            $headers = ['Authorization' => 'ApeKey ' . $token];
+
+            // Request PB
+            $pbResponse = Http::withHeaders($headers)
+                ->timeout(10) // Tambah timeout jadi 10s utk production
                 ->get('https://api.monkeytype.com/users/personalBests?mode=time');
 
-            $statsResponse = Http::withHeaders(['Authorization' => 'ApeKey ' . $token])
-                ->timeout(3)
+            // Request Stats
+            $statsResponse = Http::withHeaders($headers)
+                ->timeout(10)
                 ->get('https://api.monkeytype.com/users/stats');
 
             if ($pbResponse->failed() || $statsResponse->failed()) {
-                return response()->json(['error' => 'Gagal koneksi ke MonkeyType'], 502);
+                // Return body error dari MonkeyType untuk debugging
+                return response()->json([
+                    'error' => 'Gagal koneksi ke MonkeyType',
+                    'mt_error_pb' => $pbResponse->body(),
+                    'mt_error_stats' => $statsResponse->body()
+                ], 502);
             }
 
             return response()->json([
@@ -63,12 +74,11 @@ Route::prefix('api')->group(function () {
             ]);
 
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Server Error'], 500);
+            return response()->json(['error' => 'Server Error: ' . $e->getMessage()], 500);
         }
     });
 
 });
-
 
 
 

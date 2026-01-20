@@ -37,4 +37,7 @@ return [
     'fonnte' => [
         'token' => env('a8cdEEUvtrXTLeNJVU53'), // Ini akan membaca .env dengan aman
     ],
+    'monkeytype' => [
+        'key' => env('API_MONKEYTYPE'), 
+],
 ];
