@@ -3,8 +3,8 @@ use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Models\Certificate;
 use App\Models\Experience;
@@ -14,7 +14,7 @@ use App\Models\ResumeDownload;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Controllers\Admin\ContactController as AdminContactController; // <--- Dikasih nama baru
 
 
 
@@ -72,7 +72,6 @@ Route::prefix('api')->group(function () {
 
 
 
-
 // --- 2. AUTHENTICATION (MANUAL) ---
 
 Route::middleware('guest')->group(function () {
@@ -105,7 +104,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('experiences', ExperienceController::class);
     //CRUD Skill
     Route::resource('skills', SkillController::class);
-
+    //Routes massages
+    Route::resource('messages', ContactController::class)->only(['index', 'destroy']);
 
     Route::get('/dashboard', function () {
         // Ambil Data Statistik Real-time
@@ -158,13 +158,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
 
 // Pakai ::class
+// Route Inbox / Contact Message
+
 Route::post('/contact/send', [ContactController::class, 'store'])->name('contact.send');
-
-Route::get('/debug-env', function () {
-    dd(
-        env('a8cdEEUvtrXTLeNJVU53'),
-        config('services.fonnte.token')
-    );
-});
-
-

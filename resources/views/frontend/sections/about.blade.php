@@ -392,14 +392,26 @@
                         class="group relative rounded-2xl bg-rail-card border {{ $cert->is_pinned ? 'border-rail-accent/50 shadow-[0_0_20px_rgba(139,92,246,0.1)]' : 'border-border-soft' }} p-4 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(139,92,246,0.2)] hover:border-rail-accent/50">
 
                         <div
-                            class="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-4 border border-white/5 bg-rail-dark/50">
+                            class="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-4 border border-white/5 bg-rail-dark/50 group/image">
+
                             <div
-                                class="absolute inset-0 bg-rail-accent/10 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                                class="absolute inset-0 bg-black/60 opacity-0 group-hover/image:opacity-100 transition-all duration-300 z-20 flex items-center justify-center gap-3 backdrop-blur-sm">
+                                <a href="{{ asset('storage/' . $cert->file) }}" target="_blank"
+                                    class="p-2 bg-rail-accent text-white rounded-full hover:scale-110 transition-transform shadow-lg"
+                                    title="View Certificate">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                        </path>
+                                    </svg>
+                                </a>
                             </div>
 
                             @if ($cert->file_type == 'image')
                                 <img src="{{ asset('storage/' . $cert->file) }}" alt="{{ $cert->title }}"
-                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ease-out">
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out">
                             @else
                                 <div
                                     class="w-full h-full flex flex-col items-center justify-center text-gray-500 bg-rail-dark/30">
@@ -414,16 +426,19 @@
                             @endif
 
                             @if ($cert->is_pinned)
-                                <div class="absolute top-2 right-2 z-20">
-                                    <span
-                                        class="bg-rail-accent text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-lg">
-                                        Featured
-                                    </span>
+                                <div class="absolute top-3 right-3 z-30 filter drop-shadow-lg">
+                                    <div
+                                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.4)] border border-white">
+                                        <svg class="w-5 h-5 text-red-600 transform rotate-45" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path d="M16 12V4H17V2H7V4H8V12L6 14v2h5v6l1 1 1-1v-6h5v-2z" />
+                                        </svg>
+                                    </div>
                                 </div>
                             @endif
                         </div>
 
-                        <div class="space-y-2">
+                        <div class="space-y-2 relative z-30 pointer-events-none">
                             <h5 class="text-sm font-bold text-text-main group-hover:text-rail-accent transition-colors line-clamp-2"
                                 title="{{ $cert->title }}">
                                 {{ $cert->title }}
@@ -434,7 +449,6 @@
                             </p>
 
                             <div class="pt-3 flex items-start justify-between border-t border-white/5 mt-3 gap-2">
-
                                 <div class="flex flex-wrap gap-1">
                                     @if ($cert->tags)
                                         @foreach (explode(',', $cert->tags) as $tag)
@@ -447,15 +461,12 @@
                                         <span class="text-[10px] text-text-muted">Certificate</span>
                                     @endif
                                 </div>
-
                                 <span class="text-[10px] text-text-muted whitespace-nowrap mt-1">
                                     {{ $cert->issued_year }}
                                 </span>
                             </div>
                         </div>
 
-                        <a href="{{ asset('storage/' . $cert->file) }}" target="_blank"
-                            class="absolute inset-0 z-0"></a>
                     </div>
 
                 @empty
