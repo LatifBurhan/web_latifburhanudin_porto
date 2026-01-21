@@ -46,21 +46,20 @@ else document.documentElement.classList.remove('dark');">
         class="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500 bg-dot-pattern bg-dot-lg opacity-80">
     </div>
 
-    <div class="fixed top-6 right-6 z-40 flex items-center gap-3" x-data="{
-        musicPlaying: false,
-        toggleMusic() {
-            this.musicPlaying = !this.musicPlaying;
-            const audio = this.$refs.bgMusic;
-            // Volume diset pelan (20%) biar enak didengar
-            audio.volume = 0.2;
+    <div class="fixed top-6 right-6 z-[100] flex items-center gap-3" x-data="{
+    musicPlaying: false,
+    toggleMusic() {
+        this.musicPlaying = !this.musicPlaying;
+        const audio = this.$refs.bgMusic;
+        audio.volume = 0.2;
 
-            if (this.musicPlaying) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
+        if (this.musicPlaying) {
+            audio.play();
+        } else {
+            audio.pause();
         }
-    }">
+    }
+}">
 
         <audio x-ref="bgMusic" loop preload="auto">
             <source src="{{ asset('audio/aboutyou1975.mp3') }}" type="audio/mp3">
