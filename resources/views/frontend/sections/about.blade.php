@@ -30,7 +30,7 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="text-3xl font-bold text-white">Who is Latif?</h3>
+                        <h3 class="text-3xl font-bold text-white">Who is Latif</h3>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                             <p class="text-xs text-rail-accent font-bold tracking-widest uppercase">The Developer</p>
