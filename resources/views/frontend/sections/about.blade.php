@@ -41,7 +41,7 @@
                 <div class="relative z-10 space-y-4">
                     <p class="text-text-muted leading-relaxed text-base">
                         Hi, I'm <strong class="text-white font-bold text-lg">Latif Burhanudin</strong>, an Informatics
-                        Engineering student with experience in crafting digital solutions.
+                        Engineering student with experience in crafting digital solutions
                     </p>
                     <p class="text-text-muted leading-relaxed text-base">
                         While I have a background in Graphic Design and UI/UX, my true passion lies in
