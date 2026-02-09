@@ -1,136 +1,178 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Admin\CertificateController;
+use App\Http\Controllers\Admin\ExperienceController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\AuthController;
-// Kita gunakan Full Path Namespace di bawah untuk menghindari konflik nama class
+use App\Http\Controllers\HomeController;
+use App\Models\Certificate;
+use App\Models\Experience;
+use App\Models\Project;
+use App\Models\Resume;
+use App\Models\ResumeDownload;
+// use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Admin\ContactController as AdminContactController; // <--- Dikasih nama baru
 
-/*
-|--------------------------------------------------------------------------
-| 1. PUBLIC ROUTES (Frontend)
-|--------------------------------------------------------------------------
-*/
 
-// Halaman Home (Portfolio)
+
+// --- 1. FRONTEND (PUBLIK) ---
 Route::get('/', function () {
-    // 1. Ambil Data Certificates
-    $certificates = \App\Models\Certificate::orderBy('is_pinned', 'desc')->orderBy('issued_year', 'desc')->get();
+  $certificates = Certificate::orderBy('is_pinned', 'desc')
+               ->orderBy('issued_year', 'desc')
+               ->get();
+  $projects = Project::latest()->get();
+  $tech_experiences = Experience::where('type', 'tech')->latest()->get();
+  $prof_experiences = Experience::where('type', 'professional')->latest()->get();
 
-    // 2. Ambil Data Projects
-    $projects = \App\Models\Project::latest()->get();
 
-    // 3. Ambil Data Experiences
-    $tech_experiences = \App\Models\Experience::where('type', 'tech')->latest()->get();
-    $prof_experiences = \App\Models\Experience::where('type', 'professional')->latest()->get();
-
-    // 4. Ambil Data Skills (INI YANG TADI HILANG/ERROR)
-    $skills = \App\Models\Skill::all();
-
-    return view('frontend.home', compact(
-        'certificates',
-        'projects',
-        'tech_experiences',
-        'prof_experiences',
-        'skills' // <--- Pastikan ini ada
-    ));
+  return view('frontend.home', compact('certificates', 'projects','tech_experiences','prof_experiences'));
 })->name('home');
 
-// Kirim Pesan (Contact Form Public)
-Route::post('/contact/send', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.send');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+//api token monkeytype
+//Njk2Y2UxM2Q0MjhiNjk2MTlhY2UxMTNmLkd5d1RRZURUNnNIQ0ZuSFU2aHdrVlNORHlHMXdDQVEx
+use Illuminate\Support\Facades\Http;
 
-// Download CV Logic
-Route::get('/download-cv', function () {
-    $resume = \App\Models\Resume::where('is_active', true)->first();
+Route::get('/monkeytype-stats', function () {
 
-    if (!$resume) {
-        return back()->with('error', 'CV not available at the moment.');
+  $token = config('services.monkeytype.key');
+
+  if (!$token) {
+    return response()->json([
+      'error' => 'Monkeytype API key not set'
+    ], 500);
+  }
+
+  try {
+    $headers = [
+      'Authorization' => 'Bearer ' . $token
+    ];
+
+    $pbResponse = Http::withHeaders($headers)
+      ->timeout(10)
+      ->get('https://api.monkeytype.com/users/personalBests?mode=time');
+
+    $statsResponse = Http::withHeaders($headers)
+      ->timeout(10)
+      ->get('https://api.monkeytype.com/users/stats');
+
+    if ($pbResponse->failed() || $statsResponse->failed()) {
+      return response()->json([
+        'error' => 'Monkeytype API failed',
+        'pb' => $pbResponse->body(),
+        'stats' => $statsResponse->body(),
+      ], 502);
     }
 
-    // Tracking Download
-    \App\Models\ResumeDownload::create([
-        'resume_id' => $resume->id,
-        'ip_address' => request()->ip(),
-        'user_agent' => request()->header('User-Agent'),
+    return response()->json([
+      'pbs' => $pbResponse->json('data') ?? [],
+      'stats' => $statsResponse->json('data') ?? []
     ]);
 
-    return Storage::disk('public')->download($resume->file_path, $resume->name . '.pdf');
-})->name('cv.download');
-
-// Monkeytype Stats API
-Route::get('/monkeytype-stats', function () {
-    $token = config('services.monkeytype.key');
-
-    if (!$token) {
-        return response()->json(['error' => 'Monkeytype API key not set'], 500);
-    }
-
-    try {
-        $headers = ['Authorization' => 'Bearer ' . $token];
-        $pbResponse = Http::withHeaders($headers)->timeout(10)->get('https://api.monkeytype.com/users/personalBests?mode=time');
-        $statsResponse = Http::withHeaders($headers)->timeout(10)->get('https://api.monkeytype.com/users/stats');
-
-        if ($pbResponse->failed() || $statsResponse->failed()) {
-            return response()->json(['error' => 'Monkeytype API failed'], 502);
-        }
-
-        return response()->json([
-            'pbs' => $pbResponse->json('data') ?? [],
-            'stats' => $statsResponse->json('data') ?? []
-        ]);
-    } catch (\Throwable $e) {
-        return response()->json(['error' => $e->getMessage()], 500);
-    }
+  } catch (\Throwable $e) {
+    return response()->json([
+      'error' => $e->getMessage()
+    ], 500);
+  }
 });
 
 
-/*
-|--------------------------------------------------------------------------
-| 2. AUTHENTICATION (Login/Logout)
-|--------------------------------------------------------------------------
-*/
+
+
+// --- 2. AUTHENTICATION (MANUAL) ---
+
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthController::class, 'index'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+  Route::get('/login', [AuthController::class, 'index'])->name('login');
+  Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 
-/*
-|--------------------------------------------------------------------------
-| 3. ADMIN PANEL (Protected Routes)
-|--------------------------------------------------------------------------
-*/
-// Semua route di dalam sini WAJIB Login
+// --- 3. REDIRECT /DASHBOARD ---
+Route::get('/dashboard', function () {
+  return redirect()->route('admin.dashboard');
+});
+
+
+// --- 4. ADMIN PANEL (DILINDUNGI PASSWORD) ---
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
 
-    // --- Dashboard & Statistik ---
-    Route::get('/dashboard', function () {
-        $totalProjects = \App\Models\Project::count();
-        $totalCertificates = \App\Models\Certificate::count();
-        $totalExperiences = \App\Models\Experience::count();
-        $totalDownloads = \App\Models\ResumeDownload::count();
+  Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+  })->name('dashboard');
 
-        return view('admin.dashboard', compact(
-            'totalProjects', 'totalCertificates', 'totalExperiences', 'totalDownloads'
-        ));
-    })->name('dashboard');
+  // CRUD Sertifikat
+  Route::resource('certificates', CertificateController::class);
 
-    // --- Fitur Ganti Password ---
-    Route::put('/password/update', [AuthController::class, 'updatePassword'])->name('password.update');
+  // CRUD Project
+  Route::resource('projects', ProjectController::class);
+  // CRUD Experience
+  Route::resource('experiences', ExperienceController::class);
+  //CRUD Skill
+  Route::resource('skills', SkillController::class);
+  //Routes massages
+  Route::resource('messages', ContactController::class)->only(['index', 'destroy']);
 
-    // --- CRUD Resources ---
-    Route::resource('certificates', \App\Http\Controllers\Admin\CertificateController::class);
-    Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
-    Route::resource('experiences', \App\Http\Controllers\Admin\ExperienceController::class);
-    Route::resource('skills', \App\Http\Controllers\Admin\SkillController::class);
+  Route::put('/password/update', [AuthController::class, 'updatePassword'])->name('password.update');
 
-    // Inbox Pesan (Admin View Only)
-    Route::resource('messages', \App\Http\Controllers\Admin\ContactController::class)->only(['index', 'destroy']);
+  Route::get('/dashboard', function () {
+    // Ambil Data Statistik Real-time
+    $totalProjects = Project::count();
+    $totalCertificates = Certificate::count();
+    $totalExperiences = Experience::count();
+    $totalDownloads = ResumeDownload::count(); // Hitung total download CV
 
-    // Resume Manager
-    Route::resource('resumes', \App\Http\Controllers\Admin\ResumeController::class)->only(['index', 'store', 'destroy']);
-    Route::post('/resumes/{id}/activate', [\App\Http\Controllers\Admin\ResumeController::class, 'activate'])->name('resumes.activate');
-    Route::get('/resumes/{id}/logs', [\App\Http\Controllers\Admin\ResumeController::class, 'logs'])->name('resumes.logs');
+    // Kirim ke View
+    return view('admin.dashboard', compact(
+      'totalProjects',
+      'totalCertificates',
+      'totalExperiences',
+      'totalDownloads'
+    ));
+  })->name('dashboard');
+
 });
+
+
+//download cv
+
+Route::get('/download-cv', function () {
+  // Cari CV yang statusnya ACTIVE
+  $resume = Resume::where('is_active', true)->first();
+
+  if (!$resume) {
+    return back()->with('error', 'CV not available at the moment.');
+  }
+
+  // TRACKING: Simpan data downloader
+  ResumeDownload::create([
+    'resume_id' => $resume->id,
+    'ip_address' => request()->ip(),
+    'user_agent' => request()->header('User-Agent'), // Info Browser/HP
+  ]);
+
+  // Download File
+  return Storage::disk('public')->download($resume->file_path, $resume->name . '.pdf');
+})->name('cv.download');
+
+
+// 2. ROUTE ADMIN (Tambahkan di dalam grup middleware auth/admin)
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+  // ... route lain ...
+
+  Route::resource('resumes', App\Http\Controllers\Admin\ResumeController::class)->only(['index', 'store', 'destroy']);
+  Route::post('/resumes/{id}/activate', [App\Http\Controllers\Admin\ResumeController::class, 'activate'])->name('resumes.activate');
+Route::get('/resumes/{id}/logs', [App\Http\Controllers\Admin\ResumeController::class, 'logs'])->name('resumes.logs');
+});
+
+
+// Pakai ::class
+// Route Inbox / Contact Message
+
+Route::post('/contact/send', [ContactController::class, 'store'])->name('contact.send');
+
+
