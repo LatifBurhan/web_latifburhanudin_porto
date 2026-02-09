@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
-// Kita pakai Full Path di bawah biar tidak bentrok nama Controller
+// Kita gunakan Full Path Namespace di bawah untuk menghindari konflik nama class
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +14,26 @@ use App\Http\Controllers\AuthController;
 
 // Halaman Home (Portfolio)
 Route::get('/', function () {
+    // 1. Ambil Data Certificates
     $certificates = \App\Models\Certificate::orderBy('is_pinned', 'desc')->orderBy('issued_year', 'desc')->get();
+
+    // 2. Ambil Data Projects
     $projects = \App\Models\Project::latest()->get();
+
+    // 3. Ambil Data Experiences
     $tech_experiences = \App\Models\Experience::where('type', 'tech')->latest()->get();
     $prof_experiences = \App\Models\Experience::where('type', 'professional')->latest()->get();
 
-    return view('frontend.home', compact('certificates', 'projects', 'tech_experiences', 'prof_experiences'));
+    // 4. Ambil Data Skills (INI YANG TADI HILANG/ERROR)
+    $skills = \App\Models\Skill::all();
+
+    return view('frontend.home', compact(
+        'certificates',
+        'projects',
+        'tech_experiences',
+        'prof_experiences',
+        'skills' // <--- Pastikan ini ada
+    ));
 })->name('home');
 
 // Kirim Pesan (Contact Form Public)
