@@ -34,51 +34,51 @@ Route::get('/', function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 //api token monkeytype
 //Njk2Y2UxM2Q0MjhiNjk2MTlhY2UxMTNmLkd5d1RRZURUNnNIQ0ZuSFU2aHdrVlNORHlHMXdDQVEx
-Route::prefix('api')->group(function () {
+use Illuminate\Support\Facades\Http;
 
-    Route::get('/monkeytype-stats', function () {
-        // AMBIL DARI CONFIG DULU, BARU ENV SEBAGAI CADANGAN
-        // Pastikan di hosting kamu Environment Variable 'API_MONKEYTYPE' sudah diisi!
-        $token = config('services.monkeytype.key', env('API_MONKEYTYPE'));
+Route::get('/monkeytype-stats', function () {
 
-        if (empty($token)) {
-            // Debugging: Cek apakah token terbaca null
-            return response()->json(['error' => 'API Key Server configuration missing (Token is null)'], 500);
-        }
+    $token = config('services.monkeytype.key');
 
-        try {
-            $headers = ['Authorization' => 'ApeKey ' . $token];
+    if (!$token) {
+        return response()->json([
+            'error' => 'Monkeytype API key not set'
+        ], 500);
+    }
 
-            // Request PB
-            $pbResponse = Http::withHeaders($headers)
-                ->timeout(10) // Tambah timeout jadi 10s utk production
-                ->get('https://api.monkeytype.com/users/personalBests?mode=time');
+    try {
+        $headers = [
+            'Authorization' => 'Bearer ' . $token
+        ];
 
-            // Request Stats
-            $statsResponse = Http::withHeaders($headers)
-                ->timeout(10)
-                ->get('https://api.monkeytype.com/users/stats');
+        $pbResponse = Http::withHeaders($headers)
+            ->timeout(10)
+            ->get('https://api.monkeytype.com/users/personalBests?mode=time');
 
-            if ($pbResponse->failed() || $statsResponse->failed()) {
-                // Return body error dari MonkeyType untuk debugging
-                return response()->json([
-                    'error' => 'Gagal koneksi ke MonkeyType',
-                    'mt_error_pb' => $pbResponse->body(),
-                    'mt_error_stats' => $statsResponse->body()
-                ], 502);
-            }
+        $statsResponse = Http::withHeaders($headers)
+            ->timeout(10)
+            ->get('https://api.monkeytype.com/users/stats');
 
+        if ($pbResponse->failed() || $statsResponse->failed()) {
             return response()->json([
-                'pbs' => $pbResponse->json()['data'] ?? [],
-                'stats' => $statsResponse->json()['data'] ?? []
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Server Error: ' . $e->getMessage()], 500);
+                'error' => 'Monkeytype API failed',
+                'pb' => $pbResponse->body(),
+                'stats' => $statsResponse->body(),
+            ], 502);
         }
-    });
 
+        return response()->json([
+            'pbs' => $pbResponse->json('data') ?? [],
+            'stats' => $statsResponse->json('data') ?? []
+        ]);
+
+    } catch (\Throwable $e) {
+        return response()->json([
+            'error' => $e->getMessage()
+        ], 500);
+    }
 });
+
 
 
 
