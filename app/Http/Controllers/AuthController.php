@@ -67,4 +67,45 @@ class AuthController extends Controller
 
         return back()->with('success', 'Password berhasil diperbarui!');
     }
+
+    // 5. 👇 FITUR LUPA PASSWORD: Tampilkan Form
+    public function showForgotPassword()
+    {
+        return view('auth.forgot-password');
+    }
+
+    // 6. 👇 FITUR LUPA PASSWORD: Proses Reset
+    public function resetPassword(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'secret_code' => 'required',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        // Cek apakah secret code benar
+        $correctCode = env('ADMIN_RESET_CODE', '085786858184');
+        
+        if ($request->secret_code !== $correctCode) {
+            return back()->withErrors([
+                'secret_code' => 'Secret code salah! Silakan coba lagi.'
+            ])->withInput();
+        }
+
+        // Reset password admin (email: admin@latif.com)
+        $admin = User::where('email', 'admin@latif.com')->first();
+        
+        if (!$admin) {
+            return back()->withErrors([
+                'secret_code' => 'Admin tidak ditemukan!'
+            ]);
+        }
+
+        // Update password
+        $admin->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('login')->with('success', 'Password berhasil direset! Silakan login dengan password baru.');
+    }
 }

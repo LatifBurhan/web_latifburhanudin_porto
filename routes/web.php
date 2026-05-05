@@ -45,6 +45,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::middleware('guest')->group(function () {
   Route::get('/login', [AuthController::class, 'index'])->name('login');
   Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+  
+  // Forgot Password Routes
+  Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request');
+  Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.reset');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
