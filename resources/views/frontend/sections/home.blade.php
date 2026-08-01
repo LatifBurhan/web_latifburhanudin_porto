@@ -46,7 +46,7 @@
             <h2 class="text-lg md:text-2xl text-gray-600 dark:text-gray-400 font-light">
                 Hi, I'm <span
                     class="text-gray-900 dark:text-white font-bold decoration-wavy decoration-purple-500/50 underline-offset-4 hover:underline transition-all">Latif
-                    Burhanuddin</span>.
+                    Burhanudin</span>.
             </h2>
             <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base lg:text-lg max-w-lg leading-relaxed">
                 Crafting experiences as a
@@ -126,7 +126,7 @@
             <pre class="text-[10px] font-mono leading-tight">
 <span class="text-purple-600 dark:text-purple-400">const</span> <span class="text-yellow-600 dark:text-yellow-200">dev</span> = {
   <span class="text-blue-600 dark:text-blue-300">name</span>: <span class="text-green-600 dark:text-green-300">'Latif'</span>,
-  <span class="text-blue-600 dark:text-blue-300">role</span>: <span class="text-green-600 dark:text-green-300">'UI/UX'</span>
+  <span class="text-blue-600 dark:text-blue-300">role</span>: <span class="text-green-600 dark:text-green-300">'Web Developres'</span>
 };
             </pre>
         </div>
