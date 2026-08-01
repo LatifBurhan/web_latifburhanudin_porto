@@ -1,14 +1,14 @@
 <div class="w-full max-w-5xl mx-auto px-4 pb-20">
 
-    <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-main mb-3">
+    <header class="text-center mb-12">
+        <h1 class="text-3xl md:text-5xl font-bold text-text-main mb-3">
             Beyond The <span
                 class="text-transparent bg-clip-text bg-gradient-to-r from-rail-accent to-rail-sweet">Screen.</span>
-        </h2>
+        </h1>
         <p class="text-text-muted max-w-xl mx-auto text-sm md:text-base">
             I believe that beautiful logic creates aesthetic results.
         </p>
-    </div>
+    </header>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
 
@@ -30,7 +30,7 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="text-3xl font-bold text-white">Who is Latif</h3>
+                        <h2 class="text-3xl font-bold text-white">Who is Latif</h2>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                             <p class="text-xs text-rail-accent font-bold tracking-widest uppercase">The Developer</p>
@@ -103,10 +103,10 @@
 
 
         <div class="lg:col-span-7 p-8 rounded-[32px] bg-rail-card border border-border-soft relative overflow-hidden">
-            <h4 class="text-sm font-bold text-text-muted uppercase tracking-[0.2em] mb-8 flex items-center gap-3">
+            <h3 class="text-sm font-bold text-text-muted uppercase tracking-[0.2em] mb-8 flex items-center gap-3">
                 <span class="w-8 h-[2px] bg-rail-accent rounded-full"></span>
                 Education Journey
-            </h4>
+            </h3>
 
             <div class="space-y-8 relative pl-6 border-l-2 border-white/5 ml-2">
 
@@ -115,7 +115,7 @@
                         class="absolute -left-[31px] top-1 h-4 w-4 rounded-full bg-rail-card border-4 border-rail-accent shadow-[0_0_15px_rgba(139,92,246,0.6)]"></span>
                     <div class="group-hover:translate-x-2 transition-transform duration-300">
                         <div class="flex items-center gap-3 mb-1">
-                            <h3 class="text-lg font-bold text-white">Informatics Engineering</h3>
+                            <h4 class="text-lg font-bold text-white">Informatics Engineering</h4>
                             <span
                                 class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rail-accent/20 text-rail-accent border border-rail-accent/20 animate-pulse">Active</span>
                         </div>
@@ -132,8 +132,8 @@
                         class="absolute -left-[31px] top-1 h-4 w-4 rounded-full bg-rail-card border-4 border-gray-600 group-hover:border-rail-sweet transition-colors"></span>
                     <div class="group-hover:translate-x-2 transition-transform duration-300">
                         <div class="flex items-center gap-3 mb-1">
-                            <h3 class="text-lg font-bold text-text-main group-hover:text-white transition-colors">
-                                Software Engineering (RPL)</h3>
+                            <h4 class="text-lg font-bold text-text-main group-hover:text-white transition-colors">
+                                Software Engineering (RPL)</h4>
                             <span
                                 class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 border border-gray-700">Graduated</span>
                         </div>
@@ -264,8 +264,7 @@
                         <span
                             class="absolute -left-[37px] top-6 h-4 w-4 rounded-full border-2 border-rail-accent bg-rail-dark group-hover:bg-rail-accent transition-colors shadow-[0_0_10px_rgba(139,92,246,0.4)]"></span>
 
-                        <div
-                            class="p-5 rounded-[24px] bg-rail-card shadow-neu-dark border border-border-soft hover:border-rail-accent transition-all group-hover:-translate-y-1 duration-300">
+                        <div class="p-5 rounded-[24px] bg-rail-card shadow-neu-dark border border-border-soft hover:border-rail-accent transition-all group-hover:-translate-y-1 duration-300">
                             <div class="flex justify-between items-start mb-1">
                                 <h4 class="font-bold text-text-main group-hover:text-rail-accent transition-colors">
                                     {{ $exp->role }}</h4>
@@ -310,8 +309,7 @@
                         <span
                             class="absolute -left-[37px] top-6 h-4 w-4 rounded-full border-2 border-rail-sweet bg-rail-dark group-hover:bg-rail-sweet transition-colors shadow-[0_0_10px_rgba(236,72,153,0.4)]"></span>
 
-                        <div
-                            class="p-5 rounded-[24px] bg-rail-card shadow-neu-dark border border-border-soft hover:border-rail-sweet transition-all group-hover:-translate-y-1 duration-300">
+                        <div class="p-5 rounded-[24px] bg-rail-card shadow-neu-dark border border-border-soft hover:border-rail-sweet transition-all group-hover:-translate-y-1 duration-300">
                             <div class="flex justify-between items-start mb-1">
                                 <h4 class="font-bold text-text-main group-hover:text-rail-sweet transition-colors">
                                     {{ $exp->role }}</h4>
@@ -341,12 +339,12 @@
     <div class="md:col-span-12 mt-6">
 
         <div class="space-y-8 max-w-5xl mx-auto px-4">
-            <h4
+            <h3
                 class="text-sm font-bold text-text-muted uppercase tracking-[0.2em] text-center flex items-center justify-center gap-4">
                 <span class="w-12 h-[1px] bg-border-soft"></span>
                 Technical & Creative Arsenal
                 <span class="w-12 h-[1px] bg-border-soft"></span>
-            </h4>
+            </h3>
 
             <div class="text-center">
                 <p class="text-sm font-mono text-gray-500 uppercase tracking-[0.2em] mb-6">Core Tech Stack</p>
@@ -378,12 +376,12 @@
             </div>
         </div>
         <div class="md:col-span-12 mt-12">
-            <h4
+            <h3
                 class="text-sm font-bold text-text-muted uppercase tracking-[0.2em] mb-8 text-center flex items-center justify-center gap-4">
                 <span class="w-8 h-[1px] bg-border-soft"></span>
                 Certificates & Seminars
                 <span class="w-8 h-[1px] bg-border-soft"></span>
-            </h4>
+            </h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -439,10 +437,10 @@
                         </div>
 
                         <div class="space-y-2 relative z-30 pointer-events-none">
-                            <h5 class="text-sm font-bold text-text-main group-hover:text-rail-accent transition-colors line-clamp-2"
+                            <h4 class="text-sm font-bold text-text-main group-hover:text-rail-accent transition-colors line-clamp-2"
                                 title="{{ $cert->title }}">
                                 {{ $cert->title }}
-                            </h5>
+                            </h4>
 
                             <p class="text-xs text-text-muted line-clamp-2" title="{{ $cert->description }}">
                                 {{ $cert->description ?? 'No description available' }}

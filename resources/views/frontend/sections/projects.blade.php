@@ -24,15 +24,15 @@
 
 
 
-    <div class="text-center mb-12">
+    <header class="text-center mb-12">
 
-        <h2 class="text-3xl md:text-5xl font-bold text-text-main mb-6">
+        <h1 class="text-3xl md:text-5xl font-bold text-text-main mb-6">
 
             Selected <span
 
                 class="text-transparent bg-clip-text bg-gradient-to-r from-rail-accent to-rail-sweet">Projects.</span>
 
-        </h2>
+        </h1>
 
 
 
@@ -92,11 +92,11 @@
 
         </div>
 
-    </div>
+    </header>
 
 
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24" aria-label="Projects Gallery">
 
         <template x-for="item in projects.filter(p => category === 'all' || p.category === category)"
 
@@ -104,7 +104,7 @@
 
 
 
-            <div @click="selectedProject = item"
+            <article @click="selectedProject = item"
 
                 class="group relative rounded-[30px] bg-rail-card border border-border-soft shadow-neu-dark overflow-hidden cursor-pointer hover:-translate-y-2 hover:z-30 hover:shadow-xl transition-all duration-500">
 
@@ -118,9 +118,9 @@
 
                     </div>
 
-                    <img :src="item.image"
+                    <img :src="item.image" :alt="'Project Screenshot: ' + item.title"
 
-                        class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" loading="lazy">
 
 
 
@@ -152,7 +152,7 @@
 
                 <div class="p-6">
 
-                    <h3 x-text="item.title" class="text-xl font-bold text-text-main mb-2 line-clamp-1"></h3>
+                    <h2 x-text="item.title" class="text-xl font-bold text-text-main mb-2 line-clamp-1"></h2>
 
                     <p x-text="item.description" class="text-sm text-text-muted line-clamp-2 mb-4"></p>
 
@@ -172,11 +172,11 @@
 
                 </div>
 
-            </div>
+            </article>
 
         </template>
 
-    </div>
+    </section>
 
 
 
@@ -230,7 +230,7 @@
 
         <div class="w-full lg:w-[55%] h-64 lg:h-full bg-gray-900 relative group shrink-0">
 
-            <img :src="selectedProject?.image" class="w-full h-full object-cover opacity-90 transition-opacity hover:opacity-100">
+            <img :src="selectedProject?.image" :alt="'Project Detail: ' + selectedProject?.title" class="w-full h-full object-cover opacity-90 transition-opacity hover:opacity-100" loading="lazy">
 
             <div class="absolute inset-0 bg-gradient-to-t from-rail-card via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-rail-card"></div>
 
@@ -264,13 +264,13 @@
 
                 <div class="mb-6">
 
-                    <h4 class="text-sm font-bold text-gray-300 uppercase mb-3 flex items-center gap-2">
+                    <h3 class="text-sm font-bold text-gray-300 uppercase mb-3 flex items-center gap-2">
 
                         <svg class="w-4 h-4 text-rail-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
 
                         Technologies
 
-                    </h4>
+                    </h3>
 
                     <div class="flex flex-wrap gap-2">
 

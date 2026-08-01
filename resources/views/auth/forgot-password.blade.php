@@ -66,7 +66,7 @@
                        inputmode="numeric"
                        pattern="[0-9]*"
                        class="w-full bg-black/20 border border-white/10 rounded-xl p-3 text-white focus:border-rail-accent focus:ring-2 focus:ring-rail-accent/20 outline-none transition placeholder-gray-600 @error('secret_code') border-red-500 @enderror"
-                       placeholder="Contoh: 085786858184">
+                       placeholder="">
                 <p class="text-xs text-gray-500 mt-2">💡 Simpan code ini di tempat aman (password manager, notes, dll)</p>
             </div>
 

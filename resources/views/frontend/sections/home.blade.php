@@ -1,7 +1,7 @@
 <div class="w-full max-w-6xl z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
-    <div
-        class="lg:col-span-7 text-center lg:text-left order-2 lg:order-1 relative z-10 flex flex-col items-center lg:items-start">
+    <section
+        class="lg:col-span-7 text-center lg:text-left order-2 lg:order-1 relative z-10 flex flex-col items-center lg:items-start" aria-label="Hero Section">
 
         <div
             class="absolute -top-20 -left-20 w-72 h-72 bg-purple-600/10 dark:bg-purple-600/20 rounded-full blur-[100px] pointer-events-none">
@@ -92,9 +92,9 @@
                 </span>
             </button>
         </div>
-    </div>
+    </section>
 
-    <div class="lg:col-span-5 relative order-1 lg:order-2 w-full flex justify-center lg:justify-end">
+    <aside class="lg:col-span-5 relative order-1 lg:order-2 w-full flex justify-center lg:justify-end" aria-label="Profile Image">
 
         <div
             class="absolute inset-0 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full blur-[80px] opacity-20 dark:opacity-20 animate-pulse">
@@ -106,8 +106,8 @@
                     dark:bg-rail-card dark:border-white/10 dark:shadow-neu-dark
                     flex items-center justify-center p-2 z-10 overflow-hidden group transition-colors duration-300">
 
-            <img src="{{ asset('img/me.jpeg') }}" alt="Latif Burhanuddin"
-                class="w-full h-full object-cover rounded-[32px] grayscale hover:grayscale-0 transition-all duration-500 group-hover:scale-105">
+            <img src="{{ asset('img/me.jpeg') }}" alt="Latif Burhanudin - Front-End Developer and UI/UX Designer Portfolio Photo"
+                class="w-full h-full object-cover rounded-[32px] grayscale hover:grayscale-0 transition-all duration-500 group-hover:scale-105" loading="lazy">
 
             <div class="absolute inset-0 rounded-[40px] border border-black/5 dark:border-white/10 pointer-events-none">
             </div>
@@ -149,6 +149,6 @@
             </svg>
         </div>
 
-    </div>
+    </aside>
 
 </div>

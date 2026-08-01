@@ -10,17 +10,11 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
+        react(),
     ],
     server: {
         watch: {
             ignored: ['**/storage/framework/views/**'],
         },
     },
-    plugins: [
-        laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'], // Nanti kita ubah app.js ke app.jsx
-            refresh: true,
-        }),
-        react(), // Tambahkan ini
-    ],
 });

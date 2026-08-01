@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SitemapController;
 use App\Models\Certificate;
 use App\Models\Experience;
 use App\Models\Project;
@@ -33,6 +34,9 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Sitemap for SEO
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 
 
